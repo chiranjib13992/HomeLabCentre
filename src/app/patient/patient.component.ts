@@ -24,7 +24,7 @@ constructor(private fb: FormBuilder,private dialog: MatDialog , private global: 
     age: new FormControl('',[Validators.required,Validators.maxLength(2)]),
     gender: new FormControl('',[Validators.required]),
     previouDisease: new FormControl('',[Validators.required]),
-    uploadPresciption: new FormControl('',[Validators.required]),
+    uploadPresciption: new FormControl(null,[Validators.required]),
     disEase: []
   })
 }
@@ -34,8 +34,26 @@ ngOnInit() {
 }
 
   submit(){
-    console.log(this.form.value);
-    this.global.postPatientData(this.form.value)
+    if(this.form.valid){
+      const userFormData = new FormData();
+      userFormData.append('name',this.form.get('name')?.value);
+      userFormData.append('symptoms',this.form.get('symptoms')?.value);
+      userFormData.append('age',this.form.get('age')?.value);
+      userFormData.append('gender',this.form.get('gender')?.value);
+      userFormData.append('previouDisease',this.form.get('previouDisease')?.value);
+      userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value);
+      userFormData.append('disEase',this.form.get('disEase')?.value);
+
+      this.global.postPatientData(userFormData).subscribe((res)=>{
+        console.log('data is ..',res);
+        
+      },
+      (err)=>{
+        console.log(err);
+        
+      })
+    }
+    
   }
 
   prevDisease(){
@@ -66,8 +84,11 @@ ngOnInit() {
       reader.onload = (e) => {
         this.prescriptionImageURL = e.target?.result;
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); 
     }
+    this.form.get('uploadPresciption')?.setValue(file)
+    console.log(this.form.value);
+    
   }
   changeLang(){
     if(this.isLang == false){

@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalService {
-  private url = '';
+  private url = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
   private dataSubj = new BehaviorSubject<string | null>(null);
   docData$ = this.dataSubj.asObservable()
