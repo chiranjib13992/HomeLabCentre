@@ -14,7 +14,7 @@ export class GlobalService {
   sendData(data:any){
     this.dataSubj.next(data)
   }
-  postPatientData(data:any){
+  postPatientData(data: FormData){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*' 

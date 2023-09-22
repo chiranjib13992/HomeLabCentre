@@ -43,6 +43,7 @@ ngOnInit() {
       userFormData.append('previouDisease',this.form.get('previouDisease')?.value);
       userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value);
       userFormData.append('disEase',this.form.get('disEase')?.value);
+console.log(userFormData);
 
       this.global.postPatientData(userFormData).subscribe((res)=>{
         console.log('data is ..',res);
@@ -86,8 +87,6 @@ ngOnInit() {
       };
       reader.readAsDataURL(file); 
     }
-    this.form.get('uploadPresciption')?.setValue(file)
-    console.log(this.form.value);
     
   }
   changeLang(){
