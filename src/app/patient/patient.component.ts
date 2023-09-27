@@ -14,7 +14,7 @@ export class PatientComponent implements OnInit {
 form!: FormGroup
 disList : any[] = []
 user: any;
-imageFile:any;
+imageFile : any;
 disease =['Diabetes','Cardiovascular','Cancer']
 prescriptionImageURL: string | ArrayBuffer | any | null = null ;
 showDisList: boolean = false;
@@ -52,13 +52,15 @@ getData(id: string){
 
   submit(){
     if(this.form.valid){
+      console.log(this.form.value);
+      
       const userFormData = new FormData();
       userFormData.append('name',this.form.get('name')?.value);
       userFormData.append('symptoms',this.form.get('symptoms')?.value);
       userFormData.append('age', this.form.get('age')?.value);
       userFormData.append('gender',this.form.get('gender')?.value);
       userFormData.append('previouDisease',this.form.get('previouDisease')?.value);
-      userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value);
+      userFormData.append('uploadPresciption',this.imageFile, this.imageFile.name);
       userFormData.append('disEase',this.form.get('disEase')?.value);
        console.log(userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value));
 
@@ -95,8 +97,7 @@ getData(id: string){
     }
   }
   onFileChange(event: any){
-    const file = event.target.files[0];
-  this.imageFile = file
+    this.imageFile = <File> event.target.files[0];
     // if (file) {
     //   const reader = new FileReader();
     //   reader.onload = (e) => {

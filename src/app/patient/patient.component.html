@@ -43,7 +43,7 @@
                 </mat-form-field>
               </div><br>
                 <mat-label>Upload Prescription </mat-label>
-                <input placeholder="Enter your Symtoms" type="file"  formControlName="uploadPresciption" accept=".jpeg,.jpg,.png">
+                <input placeholder="Enter your Symtoms" type="file"  formControlName="uploadPresciption" accept=".jpeg,.jpg,.png" (change)="onFileChange">
                 <button mat-raised-button color="primary" (click)="viewPres()">View</button><br>
                 
               
