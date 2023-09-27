@@ -60,9 +60,8 @@ getData(id: string){
       userFormData.append('age', this.form.get('age')?.value);
       userFormData.append('gender',this.form.get('gender')?.value);
       userFormData.append('previouDisease',this.form.get('previouDisease')?.value);
-      userFormData.append('uploadPresciption',this.imageFile, this.imageFile.name);
+      userFormData.append('uploadPresciption',this.imageFile);
       userFormData.append('disEase',this.form.get('disEase')?.value);
-       console.log(userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value));
 
        this.global.postPatientData(userFormData).subscribe((res)=>{
         console.log('data is ..',res);
