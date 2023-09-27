@@ -19,6 +19,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { SearchComponent } from './search/search.component';
 import { FindDocComponent } from './find-doc/find-doc.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
+import { BookslotComponent } from './bookslot/bookslot.component';
 
 
 
@@ -29,7 +30,8 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component';
     AddeditstaffsComponent,
     SearchComponent,
     FindDocComponent,
-    DoctorListComponent
+    DoctorListComponent,
+    BookslotComponent
   ],
   imports: [
     CommonModule,

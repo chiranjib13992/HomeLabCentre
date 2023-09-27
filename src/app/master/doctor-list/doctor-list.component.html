@@ -9,7 +9,9 @@
         <li><strong>Name: </strong> {{doc.name}}<br>
         <strong>Experience: </strong> {{doc.experience}} <br>
         <strong>Address: </strong> {{doc.address}} <br>
-        <button>Book Slot</button>
+        <button mat-button class="bar-btn" (click)="openSlotBook(doc.name)">Book Slot</button>
+        <div *ngIf="selectedDoctor && doc.name == selectedDoctor"> <app-bookslot [doctor]="selectedDoctor"></app-bookslot></div>
+       
     </li>
     </ul>
 </div>

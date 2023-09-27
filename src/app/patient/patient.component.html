@@ -43,7 +43,7 @@
                 </mat-form-field>
               </div><br>
                 <mat-label>Upload Prescription </mat-label>
-                <input placeholder="Enter your Symtoms" type="file"  formControlName="uploadPresciption" accept=".jpeg,.jpg,.png" (change)="onFileChange($event)">
+                <input placeholder="Enter your Symtoms" type="file"  formControlName="uploadPresciption" accept=".jpeg,.jpg,.png">
                 <button mat-raised-button color="primary" (click)="viewPres()">View</button><br>
                 
               
@@ -54,3 +54,19 @@
 </div>
 </div>
 <app-odiaform *ngIf="isLang==true"></app-odiaform>
+<div>
+  <span>Enter Your Id</span>
+  <input #id type="text">
+  <button mat-raised-button color="primary" (click)="getData(id.value)">Get Data</button>
+  <div *ngIf="user">
+    <h2>User Profile</h2>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Age:</strong> {{ user.age }}</p>
+    <p><strong>Gender:</strong> {{ user.gender }}</p>
+    <img *ngIf="user.uploadPresciption" [src]="user.uploadPresciption" alt="User Image" width="150" height="150" />
+  </div>
+  
+  <div *ngIf="!user">
+    <p>User not found</p>
+  </div>
+</div>

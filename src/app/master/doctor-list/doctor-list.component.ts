@@ -17,6 +17,7 @@ export class DoctorListComponent {
   showDentalDoc: boolean = false
   showGenralDoc: boolean = false
   showorthopedicDoc: boolean = false
+  selectedDoctor: any;
   constructor(private global: GlobalService){
    this.global.docData$.subscribe((data)=>{
     if(data == 'Eye'){
@@ -69,6 +70,11 @@ export class DoctorListComponent {
         
       }
     })
+  }
+  openSlotBook(doc: any){
+  this.selectedDoctor = doc;
+  console.log(doc);
+  
   }
   resetFilter(){
     this.eyeDoct =  [{name:'Abinash',experience:'20-23 years',address:'Patia'},{name:'Abhisekh',experience:'5-06 years',address:'Nayapalli'},{name:'Anu',experience:'11-12 years',address:'Jagamara'},{name:'Ajay',experience:'14-15 years',address:'Khandagiri'},{name:'Paras',experience:'16-17 years',address:'Sundarpada'}]

@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
-  private url = 'http://localhost:8080';
+  private url = 'http://localhost:4000';
   constructor(private http: HttpClient) { }
   private dataSubj = new BehaviorSubject<string | null>(null);
   docData$ = this.dataSubj.asObservable()
@@ -19,7 +19,10 @@ export class GlobalService {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*' 
     });
-  return this.http.post(`${this.url}`, data, {headers})
+  return this.http.post(`${this.url}/createUser`, data)
+  }
+  getUser(userId: string) {
+    return this.http.get(`${this.url}/getData/${userId}`);
   }
  
 }
