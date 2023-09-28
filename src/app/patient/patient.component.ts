@@ -30,7 +30,7 @@ constructor(private fb: FormBuilder,
     age: new FormControl('',[Validators.required,Validators.maxLength(2)]),
     gender: new FormControl('',[Validators.required]),
     previouDisease: new FormControl('',[Validators.required]),
-    uploadPresciption: [''],
+    uploadPresciption: [null],
     disEase: []
   })
 }
@@ -60,7 +60,7 @@ getData(id: string){
       userFormData.append('age', this.form.get('age')?.value);
       userFormData.append('gender',this.form.get('gender')?.value);
       userFormData.append('previouDisease',this.form.get('previouDisease')?.value);
-      userFormData.append('uploadPresciption',this.imageFile);
+      userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value);
       userFormData.append('disEase',this.form.get('disEase')?.value);
 
        this.global.postPatientData(userFormData).subscribe((res)=>{
@@ -96,14 +96,19 @@ getData(id: string){
     }
   }
   onFileChange(event: any){
-    this.imageFile = <File> event.target.files[0];
-    // if (file) {
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     this.prescriptionImageURL = e.target?.result;
-    //   };
-    //   reader.readAsDataURL(file); 
-    // }
+
+    const file = event.target.files[0];
+    this.form.patchValue({
+      uploadPresciption: file
+    })
+    this.form.get('uploadPresciption')?.updateValueAndValidity();
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.prescriptionImageURL = e.target?.result;
+      };
+      reader.readAsDataURL(file); 
+    }
     
   }
   changeLang(){
