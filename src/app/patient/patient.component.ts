@@ -53,16 +53,23 @@ getData(id: string){
   submit(){
     if(this.form.valid){
       console.log(this.form.value);
-      
-      const userFormData = new FormData();
-      userFormData.append('name',this.form.get('name')?.value);
-      userFormData.append('symptoms',this.form.get('symptoms')?.value);
-      userFormData.append('age', this.form.get('age')?.value);
-      userFormData.append('gender',this.form.get('gender')?.value);
-      userFormData.append('previouDisease',this.form.get('previouDisease')?.value);
-      userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value);
-      userFormData.append('disEase',this.form.get('disEase')?.value);
+       const userData = {
+        name: this.form.get('name')?.value,
+        symptoms: this.form.get('symptoms')?.value,
+        age: this.form.get('age')?.value,
+        gender:this.form.get('gender')?.value,
+        disEase: this.form.get('disEase')?.value
 
+       }
+      const userFormData = new FormData();
+      //  userFormData.append('patientData',JSON.stringify(userData))
+      userFormData.append('name',JSON.stringify(this.form.get('name')?.value));
+      userFormData.append('symptoms',JSON.stringify(this.form.get('symptoms')?.value));
+      userFormData.append('age', JSON.stringify(this.form.get('age')?.value));
+      userFormData.append('gender',JSON.stringify(this.form.get('gender')?.value));
+      userFormData.append('previouDisease',JSON.stringify(this.form.get('previouDisease')?.value));
+      userFormData.append('disEase',JSON.stringify(this.form.get('disEase')?.value));
+      userFormData.append('uploadPresciption',this.form.get('uploadPresciption')?.value);
        this.global.postPatientData(userFormData).subscribe((res)=>{
         console.log('data is ..',res);
         

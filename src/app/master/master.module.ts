@@ -20,6 +20,8 @@ import { SearchComponent } from './search/search.component';
 import { FindDocComponent } from './find-doc/find-doc.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { BookslotComponent } from './bookslot/bookslot.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 
@@ -48,7 +50,8 @@ import { BookslotComponent } from './bookslot/bookslot.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ]
 })
 export class MasterModule { }

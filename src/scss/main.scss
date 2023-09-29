@@ -4,13 +4,14 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100%;
-    height: 100vh;
+    width: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex;
     position: relative;
+    background-color: rgba(28, 22, 22, 0.799);
   }
 
   .centre-cont{
@@ -36,8 +37,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: fit-content;
+    height: fit-content;
     background-color: rgba(28, 22, 22, 0.799);
   }
   
@@ -74,6 +75,8 @@
   }
   .content{
     justify-content: center;
+    height: fit-content;
+    width: fit-content;
   }
   .signup-btn{
     background-color: rgba(0, 119, 255, 0.724); 
@@ -465,9 +468,10 @@ input[type="text"] {
     background-color: #f0f0f0;
     cursor: pointer;
   }
-  .box{
+  .box {
     display: flex;
     align-items: center;
+    margin-right: 100px;
   }
   .location-cotainer{
     position: relative;
