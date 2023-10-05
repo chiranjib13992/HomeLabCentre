@@ -20,13 +20,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { OdiaformComponent } from './odiaform/odiaform.component';
+import { ImageFormComponent } from './image-form/image-form.component';
 
 
 @NgModule({
   declarations: [
     PatientComponent,
     ViewPresciptionComponent,
-    OdiaformComponent
+    OdiaformComponent,
+    ImageFormComponent
   ],
   imports: [
     CommonModule,
