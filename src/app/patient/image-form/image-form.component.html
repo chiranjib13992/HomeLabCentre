@@ -1,0 +1,4 @@
+<form  [formGroup]="imageForm" (ngSubmit)="submit()">
+    <input type="file"  accept="image/.jpeg,.jpg,.png" (change)="onFileChange($event)">
+    <button>Click</button>
+</form>

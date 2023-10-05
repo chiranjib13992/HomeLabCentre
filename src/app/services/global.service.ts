@@ -14,19 +14,30 @@ export class GlobalService {
   sendData(data:any){
     this.dataSubj.next(data)
   }
+  sendImage(data: FormData){
+    return this.http.post('http://localhost:4000/postImage',data)
+  }
   postPatientData(data: FormData){
-    const httpOptions = {
-      method: 'POST',
-      headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data; boundary=------WebKitFormBoundary2lZSUsxEA3X5jpYD',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-  return this.http.post(`${this.url}`, data, httpOptions)
+    // const httpOptions = {
+    //   // method: 'POST',
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'multipart/form-data'
+    //     // 'Accept': 'application/json',
+    //     // 'Access-Control-Allow-Origin': '*'
+    //   })
+    // };
+    const headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data'
+    });
+  return this.http.post(`${this.url}`, { headers: headers })
   }
   getUser(userId: string) {
     return this.http.get(`${this.url}/getData/${userId}`);
+  }
+  downloadPres(username: string){
+   return this.http.get(`${this.url}/getData/${username}`,{
+    responseType:'blob'
+   })
   }
  
 }
