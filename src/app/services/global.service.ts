@@ -7,7 +7,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class GlobalService {
   private url = 'http://localhost:8080/image/stores';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+   }
   private dataSubj = new BehaviorSubject<string | null>(null);
   docData$ = this.dataSubj.asObservable()
   
@@ -18,18 +20,18 @@ export class GlobalService {
     return this.http.post('http://localhost:4000/postImage',data)
   }
   postPatientData(data: FormData){
-    // const httpOptions = {
-    //   // method: 'POST',
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'multipart/form-data'
-    //     // 'Accept': 'application/json',
-    //     // 'Access-Control-Allow-Origin': '*'
-    //   })
-    // };
-    const headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
-    });
-  return this.http.post(`${this.url}`, { headers: headers })
+    const httpOptions = {
+      method: 'POST',
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*, *'
+      })
+    };
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json'
+    // });
+  return this.http.post(`${this.url}`, data,httpOptions)
   }
   getUser(userId: string) {
     return this.http.get(`${this.url}/getData/${userId}`);

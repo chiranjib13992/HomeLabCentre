@@ -1,8 +1,8 @@
 <mat-slide-toggle (click)="changeLang()">{{lang}}</mat-slide-toggle>
 <div *ngIf="isLang ==false" class="background-image">  
-    <div class="center-container">   
-   <mat-card class="patient-card">
-        <form [formGroup]="form" enctype="multipart/form-data">
+    <div class="center-container">  
+   <mat-card class="patient-card" *ngIf="isDisPlay == true">
+        <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submit()">
                 
             <div class="mat-input-field">
                 <mat-form-field appearance="outline" class="input">
@@ -26,13 +26,13 @@
                     <mat-option value="Other">Other</mat-option>
                 </mat-select>
               </mat-form-field> <br>
-              <mat-radio-group appearance="outline" aria-label="Select an option" (change)="prevDisease()" formControlName="previouDisease">
+              <!-- <mat-radio-group appearance="outline" aria-label="Select an option" (change)="prevDisease()" formControlName="previouDisease">
                 <mat-label>Is you have any previous disease? </mat-label>
                 <mat-radio-button value="1">Yes</mat-radio-button>
                 <mat-radio-button value="2">No</mat-radio-button>
-              </mat-radio-group> <br>
+              </mat-radio-group> <br> -->
 
-              <div *ngIf="showDisList == true">
+              <!-- <div *ngIf="showDisList == true">
                 <mat-form-field appearance="outline">
                     <mat-label>Name your disease: </mat-label>
                     <mat-select formControlName="disEase" multiple>
@@ -41,20 +41,33 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-              </div><br>
-                <mat-label>Upload Prescription </mat-label>
-                <input type="file" formControlName="uploadPresciption" accept="image/.jpeg,.jpg,.png" (change)="onFileChange($event)">
-                <button mat-raised-button color="primary" (click)="viewPres()">View</button><br>
+              </div><br> -->
+                <!-- <mat-label>Upload Prescription </mat-label>
+                <input type="file"  accept="image/.jpeg,.jpg,.png" (change)="onFileChange($event)">
+                <button mat-raised-button color="primary" (click)="viewPres()">View</button><br> -->
                 
               
-                <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                <button mat-raised-button color="primary">Submit</button>
 
           </form>
         </mat-card>
+        <mat-card class="patient-card" *ngIf="isDisPlay == false">
+         <form [formGroup]="presForm" enctype="multipart/form-data" (ngSubmit)="submitImage()">
+          <mat-label>Upload Prescription </mat-label>
+           <input type="file"  accept="image/.jpeg,.jpg,.png" (change)="onFileChange($event)"><br>
+           <mat-radio-group appearance="outline" aria-label="Select an option" formControlName="prescriptionList" *ngIf="containsFiles()">
+            <mat-label>Do you have more prescription? </mat-label>
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+          <button mat-raised-button color="primary">Submit</button>
+         </form>
+        </mat-card>
+      
 </div>
 </div>
 <app-odiaform *ngIf="isLang==true"></app-odiaform>
-<div>
+<!-- <div>
   <input type="text" [(ngModel)]="userName">
  <span>Click to DOWNLOAD your prescription</span> <button (click)="doownloadPres()">DOWNLOAD</button>
-</div>
+</div> -->
