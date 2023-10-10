@@ -6,7 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalService {
-  private url = 'http://localhost:4000/patientData';
+
+  private url = 'http://localhost:8080/patient/created';
   constructor(private http: HttpClient) {
 
    }
@@ -17,15 +18,14 @@ export class GlobalService {
     this.dataSubj.next(data)
   }
   sendImage(data: FormData){
-    return this.http.post('http://localhost:4000/postImage',data)
+    return this.http.post('http://localhost:8080/patient/upload/prescription/10',data)
   }
   postPatientData(data: FormData){
     const httpOptions = {
       method: 'POST',
       headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*, *'
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Origin': '*'
       })
     };
     // const headers = new HttpHeaders({
