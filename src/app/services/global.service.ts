@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalService {
-  private url = 'http://localhost:8080/image/stores';
+  private url = 'http://localhost:4000/patientData';
   constructor(private http: HttpClient) {
 
    }

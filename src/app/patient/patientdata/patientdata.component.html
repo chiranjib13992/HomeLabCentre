@@ -1,5 +1,4 @@
-<mat-slide-toggle (click)="changeLang()">{{lang}}</mat-slide-toggle>
-<div *ngIf="isLang ==false" class="background-image">  
+<div class="background-image">  
     <div class="center-container">  
    <mat-card class="patient-card" *ngIf="isDisPlay == true">
         <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submit()">
@@ -15,7 +14,7 @@
                 <input matInput placeholder="Enter your Symtoms" formControlName="symptoms">
               </mat-form-field > <br>
               <mat-form-field appearance="outline" class="input">
-                <mat-label>Age </mat-label>
+                <mat-label>Age: </mat-label>
                 <input matInput placeholder="Enter your Age" formControlName="age">
               </mat-form-field><br>
               <mat-form-field appearance="outline" class="input">
@@ -66,8 +65,3 @@
       
 </div>
 </div>
-<app-odiaform *ngIf="isLang==true"></app-odiaform>
-<!-- <div>
-  <input type="text" [(ngModel)]="userName">
- <span>Click to DOWNLOAD your prescription</span> <button (click)="doownloadPres()">DOWNLOAD</button>
-</div> -->

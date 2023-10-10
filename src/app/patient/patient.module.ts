@@ -21,6 +21,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { OdiaformComponent } from './odiaform/odiaform.component';
 import { ImageFormComponent } from './image-form/image-form.component';
+import { PatientdataComponent } from './patientdata/patientdata.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ImageFormComponent } from './image-form/image-form.component';
     PatientComponent,
     ViewPresciptionComponent,
     OdiaformComponent,
-    ImageFormComponent
+    ImageFormComponent,
+    PatientdataComponent
   ],
   imports: [
     CommonModule,

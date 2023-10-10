@@ -92,20 +92,15 @@ console.log('jsg array',this.uploadedPrescriptions);
 
 
 }
-  submit(){
+yesChange(){
+this.uploadedPrescriptions.pop()
+this.presForm.reset();
+} 
+ submit(){
     this.isDisPlay = false
     console.log(this.form.value);
     if(this.form.valid){
       console.log(this.form.value);
-       const userData = {
-        name: this.form.get('name')?.value,
-        symptoms: this.form.get('symptoms')?.value,
-        age: this.form.get('age')?.value,
-        gender:this.form.get('gender')?.value,
-        disEase: this.form.get('disEase')?.value
-
-       }
-       const a : any = 10
       const userFormData = new FormData();
       //userFormData.append('patientData',JSON.stringify(userData))
       userFormData.append('name',this.form.get('name')?.value);
