@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,11 +11,13 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./patientdata.component.scss']
 })
 export class PatientdataComponent {
+  id!:any
   isDisPlay:boolean = true;
   form!: FormGroup
   presForm!: FormGroup
   uploadedPrescriptions: File[] = [];
   constructor(private fb: FormBuilder,
+    private http:HttpClient,
     private dialog: MatDialog ,
      private global: GlobalService,
      private route: ActivatedRoute){
@@ -25,8 +28,8 @@ export class PatientdataComponent {
       gender: new FormControl('',[Validators.required]),
     })
     this.presForm = this.fb.group({
-      id: [''],
-      uploadPresciption: [Validators.required],
+      // id: [''],
+      file: [Validators.required],
       prescriptionList:new FormControl('')
     })
   }
@@ -34,32 +37,58 @@ export class PatientdataComponent {
   submitImage(){
     console.log(this.presForm.value);
     //console.log(this.presForm.get('prescriptionList')?.value);
-    this.uploadedPrescriptions.push(this.presForm.get('uploadPresciption')?.value)
-    console.log('jsg array',this.uploadedPrescriptions);
+    this.uploadedPrescriptions.push(this.presForm.get('file')?.value)
+    console.log('jsg array',this.id,'...');
+
+      const imageForm=new FormData()
+        // imageForm.append('id',this.presForm.get('id')?.value)
+        imageForm.append('file',this.presForm.get('file')?.value)
+
+       this.http.put(`http://localhost:8080/patient/upload/prescription/${this.id}`,imageForm).subscribe((res)=> {
+        console.log(res)
+       },
+       
+       (err)=> {
+        console.log(err)
+       }
+       )
     
     
     }
     submit(){
-      // this.isDisPlay = false 
       if(this.form.valid){
         console.log(this.form.value);
-        const userFormData = new FormData();
-        userFormData.append('name',this.form.get('name')?.value);
-        userFormData.append('symptoms',this.form.get('symptoms')?.value);
-        userFormData.append('age', this.form.get('age')?.value);
-        userFormData.append('gender',this.form.get('gender')?.value);
-        console.log('FormData:', userFormData)
-         this.global.postPatientData(userFormData).subscribe((res)=>{
+        // const userFormData = new FormData();
+        // userFormData.append('name',this.form.get('name')?.value);
+        // userFormData.append('symptoms',this.form.get('symptoms')?.value);
+        // userFormData.append('age', this.form.get('age')?.value);
+        // userFormData.append('gender',this.form.get('gender')?.value);
+        // console.log('FormData:', userFormData)
+        this.global.postPatientData(this.form.value).subscribe((res)=>{
           console.log('data is ..',res);
-          const a = res.hasOwnProperty('message').valueOf;
-          console.log(a);
+          this.id=res
           
+          this.isDisPlay = false 
+
           
         },
         (err)=>{
           console.log(err);
           
         })
+      //  const imageForm=new FormData()
+      //   imageForm.append('id',this.presForm.get('id')?.value)
+      //   imageForm.append('uploadPresciption',this.presForm.get('uploadPresciption')?.value)
+
+      //  this.http.post(`http://localhost:8080/patient/upload/prescription/${this.presForm.get('id')?.value}`,imageForm).subscribe((res)=> {
+      //   console.log(res)
+      //  },
+       
+      //  (err)=> {
+      //   console.log(err)
+      //  }
+      //  )
+
       }
       
     }
@@ -71,11 +100,11 @@ export class PatientdataComponent {
         return this.uploadedPrescriptions.some(item => item instanceof File);
       }
       onFileChange(event: any){
-        const file = event.target.files[0];
+        const imageFile = event.target.files[0];
         this.presForm.patchValue({
-          uploadPresciption: file
+          file: imageFile
         })
-        this.form.get('uploadPresciption')?.updateValueAndValidity();
+        this.form.get('file')?.updateValueAndValidity();
        
       }
 }

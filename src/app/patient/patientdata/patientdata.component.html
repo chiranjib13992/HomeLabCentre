@@ -54,11 +54,11 @@
          <form [formGroup]="presForm" enctype="multipart/form-data" (ngSubmit)="submitImage()">
           <mat-label>Upload Prescription </mat-label>
            <input type="file"  accept="image/.jpeg,.jpg,.png" (change)="onFileChange($event)"><br>
-           <mat-radio-group appearance="outline" aria-label="Select an option" formControlName="prescriptionList" *ngIf="containsFiles()">
+           <!-- <mat-radio-group appearance="outline" aria-label="Select an option" formControlName="prescriptionList" *ngIf="containsFiles()">
             <mat-label>Do you have more prescription? </mat-label>
             <mat-radio-button (change)="yesChange()">Yes</mat-radio-button>
             <mat-radio-button value="2">No</mat-radio-button>
-          </mat-radio-group>
+          </mat-radio-group> -->
           <button mat-raised-button color="primary">Submit</button>
          </form>
         </mat-card>
