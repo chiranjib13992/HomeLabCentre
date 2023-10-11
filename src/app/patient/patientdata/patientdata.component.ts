@@ -43,14 +43,17 @@ export class PatientdataComponent {
       // this.isDisPlay = false 
       if(this.form.valid){
         console.log(this.form.value);
-        // const userFormData = new FormData();
-        // userFormData.append('name',this.form.get('name')?.value);
-        // userFormData.append('symptoms',this.form.get('symptoms')?.value);
-        // userFormData.append('age', this.form.get('age')?.value);
-        // userFormData.append('gender',this.form.get('gender')?.value);
-        // console.log('FormData:', userFormData)
-         this.global.postPatientData(this.form.value).subscribe((res)=>{
+        const userFormData = new FormData();
+        userFormData.append('name',this.form.get('name')?.value);
+        userFormData.append('symptoms',this.form.get('symptoms')?.value);
+        userFormData.append('age', this.form.get('age')?.value);
+        userFormData.append('gender',this.form.get('gender')?.value);
+        console.log('FormData:', userFormData)
+         this.global.postPatientData(userFormData).subscribe((res)=>{
           console.log('data is ..',res);
+          const a = res.hasOwnProperty('message').valueOf;
+          console.log(a);
+          
           
         },
         (err)=>{

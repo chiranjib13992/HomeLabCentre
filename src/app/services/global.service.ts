@@ -23,15 +23,13 @@ export class GlobalService {
     const httpOptions = {
       method: 'POST',
       headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*, *'
+        'Content-Type': 'application/json'
       })
     };
     // const headers = new HttpHeaders({
     //   'Content-Type': 'application/json'
     // });
-  return this.http.post(`${this.url}`, data,httpOptions)
+  return this.http.post(`${this.url}`, data)
   }
   getUser(userId: string) {
     return this.http.get(`${this.url}/getData/${userId}`);
